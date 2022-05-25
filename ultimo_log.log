@@ -1,0 +1,145 @@
+
+[14:46:42] [INFO] [GeneradorSitemap/generarSitemap] Se utilizará un sitemap existente para el sitio web cepis
+[14:46:42] [INFO] [analizador.EjecutorAnalisis/<init>] Analizador listo para ser utilizado.
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Comenzado los análisis de los pdf.
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/03/Open-letter-on-a-right-for-encryption-CEPIS-2022-nosig.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2020/05/ITPE_Leaflet_web.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/EU-must-act-immediately-improve-digital-skills-V1-1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/Openletter-e-evidenceCEPIS-12.2019-V1.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2021/02/ARM-NVIDIA-statement.pdf
+[14:46:42] [INFO] [RecolectorPDF/recorrerYAnalizar] Analizando https://cepis.org/app/uploads/2022/01/IT_professionalism__policy-paper-V1.pdf
+[14:46:52] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:52] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:52] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Alternative Text for Images - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:53] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Decorative Images - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Decorative Images - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:54] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Alternative Text for Images - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Decorative Images - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Decorative Images - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:55] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Decorative Images - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:56] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:46:57] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/01/LSI-SIN-Statement-on-Right-to-encryption-V1.pdf
+[14:46:57] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/01/Comments_EU_Funding_Digital_Skills-V1-1.pdf
+[14:46:58] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/02/DiversIT-Charter-Overview-Feb-2022.pdf
+[14:46:58] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/01/ARM-NVIDIA-statement-V1.pdf
+[14:46:59] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/04/DiversIT-Charter-FAQs-for-Applicants-Feb-2022.pdf
+[14:46:59] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/01/CEPIS_Standing_Orders_Updated_2021-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:04] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:07] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:09] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/01/CEPIS-Comments-on-White-Paper-on-AI-V1.pdf
+[14:47:09] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:09] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Alternative Text for Images - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:10] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2020/01/UpdatedCEPISMission2016-2020-3.pdf
+[14:47:13] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2022/03/Inf4All-Framework-press-release-March-2022.pdf
+[14:47:16] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:17] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:17] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:17] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:17] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:17] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - PASSED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:17] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - FAILED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - FAILED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:22] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2020/12/Press-Release-CEPIS-statement-on-the-right-to-encrypt-12.2020.pdf
+[14:47:23] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:23] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:23] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Heading Levels - PASSED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:23] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Bookmarks - FAILED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Title - FAILED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Scanned Document - PASSED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Structure Elements (tags) - PASSED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Document Permissions - PASSED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Natural Language - PASSED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:24] [INFO] [analizador.AnalizadorTingtun/extraeResultados] Correct Tab and Reading Order - PASSED  - https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:25] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2020/06/DiversIT-Charter-Code-of-Conduct.pdf
+[14:47:25] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2021/11/CEPIS-against-total-surveillance-of-digital-communications-in-the-EU-11.2021.pdf
+[14:47:26] [INFO] [analizador.AnalizadorTingtun/analizar] Terminado: https://cepis.org/app/uploads/2020/11/Right-to-encryption-instead-of-a-master-key-for-chat-communication-CEPIS-LSI-SIN.pdf
+[14:47:28] [INFO] [RecolectorPDF/recorrerYAnalizar] Fin de los análisis.

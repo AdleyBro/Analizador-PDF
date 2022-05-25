@@ -1,72 +1,44 @@
 package analizador;
 
-import analizador.Analizador;
 import logger.Log;
+import parametros.ParamsEjecucion;
 
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class EjecutorAnalisis {
-    private static final Map<Character, Analizador> tablaAnalizadores = inicializarTablaAnalizadores();
 
-    private final List<Analizador> analizadores = new ArrayList<>();
+    private final List<Analizador> analizadores;
+
+    private final ExecutorService threadPool = Executors.newFixedThreadPool(ParamsEjecucion.getNumHilos());
 
     /**
      * A partir de los argumentos de entrada al programa, construye el ejecutor añadiendo
      * los analizadores indicados.
-     * @param args Debe ser una única cadena de caracteres, los cuales serán claves del HashMap
-     * {@link EjecutorAnalisis#tablaAnalizadores}
+     * @param tiposAnalizadores Array con los nombres de cada tipo de analizador
      */
-    public EjecutorAnalisis(String[] args) {
-        if (args.length < 1)
-            analizadores.add(tablaAnalizadores.get('u'));
-        else {
-            boolean esValido = false;
-            String arg = "";
-            for (int i = 0; !esValido && i < args.length; i++) {
-                arg = args[i];
-                esValido = arg.startsWith("-");
-            }
-
-            if (esValido)
-                construirAnalizadores(arg.substring(1));
-            else
-                analizadores.add(tablaAnalizadores.get('u'));
-        }
-    }
-
-    public void analizar(String pdfurl) {
-        for (Analizador analizador : analizadores) {
-            analizador.analizar(pdfurl);
-        }
+    public EjecutorAnalisis(String[] tiposAnalizadores) {
+        analizadores = ConstructorAnalizador.construirAnalizadores(tiposAnalizadores);
+        Log.LOGGER.info("Analizador listo para ser utilizado.");
     }
 
     /**
-     * Todos los tipos de analizadores existentes deben registrarse dentro de esta función. Esta función
-     * se utiliza exclusivamente para inicializar el atributo estático {@link EjecutorAnalisis#tablaAnalizadores}.
-     * @return HashMap con todos los tipos de analizadores existentes.
+     * Analiza el pdf utilizando los analizadores seleccionados por el usuario a través de los argumentos del programa.
+     * @param pdfurl
      */
-    private static Map<Character, Analizador> inicializarTablaAnalizadores() {
-        Map<Character, Analizador> tabla = new HashMap<>();
+    public void analizar(String pdfurl) {
 
-        tabla.put('a', new AnalizadorArchivo());
-        tabla.put('u', new AnalizadorURL());
-        tabla.put('t', new AnalizadorTest());
-
-        return tabla;
+        threadPool.submit(() -> {
+            for (Analizador analizador : analizadores) {
+                analizador.analizar(pdfurl);
+            }
+        });
     }
 
-    private void construirAnalizadores(String tipoAnalisis) {
-        Set<Character> repetidos = new HashSet<>();
-
-        for (char tipo : tipoAnalisis.toCharArray()) {
-            if (tablaAnalizadores.containsKey(tipo)) {
-                if (repetidos.contains(tipo))
-                    continue;
-                else
-                    repetidos.add(tipo);
-
-                analizadores.add(tablaAnalizadores.get(tipo));
-            }
-        }
+    public void finalizar() throws InterruptedException {
+        threadPool.shutdown();
+        threadPool.awaitTermination(24, TimeUnit.HOURS);
     }
 }
