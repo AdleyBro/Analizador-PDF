@@ -6,10 +6,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         try {
             Log.inicializar();
         } catch (IOException e) {
@@ -40,13 +41,7 @@ public class Main {
         try {
             RecolectorPDF.analizarPDFs(sitemap, ParamsEjecucion.getTiposAnalizadores());
 
-        } catch (InterruptedException e) {
-            System.err.println("Se ha interrumpido el proceso de análisis de los PDF.");
-            Log.error(e);
-            return;
-        } catch (FileNotFoundException e) {
-            System.out.println("No se ha encontrado el fichero sitemap.");
-            Log.error(e);
+        } catch (InterruptedException | IOException e) {
             return;
         }
 

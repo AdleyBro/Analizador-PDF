@@ -1,8 +1,10 @@
 package analizador;
 
+import basedatos.ConsultasBD;
 import logger.Log;
 import parametros.ParamsEjecucion;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -28,8 +30,7 @@ public class EjecutorAnalisis {
      * Analiza el pdf utilizando los analizadores seleccionados por el usuario a través de los argumentos del programa.
      * @param pdfurl
      */
-    public void analizar(String pdfurl) {
-
+    public void analizar(String pdfurl) throws IOException {
         threadPool.submit(() -> {
             for (Analizador analizador : analizadores) {
                 analizador.analizar(pdfurl);

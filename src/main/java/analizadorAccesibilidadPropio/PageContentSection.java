@@ -26,7 +26,13 @@ public class PageContentSection {
         System.out.println(new String(document.getPage(page).getContents().readAllBytes(), "UTF-8"));
         return true;
     }
-    
+
+    /**
+     * TODO: no está todavía hecho
+     * @param document
+     * @return
+     * @throws IOException
+     */
     public static boolean taggedAnnotations(PDDocument document) throws IOException {
         for (PDAnnotation an : document.getPage(0).getAnnotations()) {
             System.out.println("Name: " + an.getAnnotationName());

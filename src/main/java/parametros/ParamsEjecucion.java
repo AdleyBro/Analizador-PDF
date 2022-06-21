@@ -6,6 +6,7 @@ import org.apache.commons.cli.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class ParamsEjecucion {
@@ -17,12 +18,14 @@ public class ParamsEjecucion {
     private static int retardo;
     private static boolean debugMode;
 
+    public static Timestamp fechaHoraInicio;
+
     private static final Options options = new Options();
     private static final CommandLineParser parser = new DefaultParser();
 
     public static void getParametrosEjecucion(String[] args) throws MalformedURLException, ParseException, IllegalArgumentException {
-        urlWeb = compruebaUrlWeb(args[0]);
-        nombreWeb = compruebaNombreWeb(args[1]);
+        urlWeb = parseUrlWeb(args[0]);
+        nombreWeb = parseNombreWeb(args[1]);
 
         if (args.length == 2)
             analizarParametros(new String[] {});
@@ -30,7 +33,7 @@ public class ParamsEjecucion {
             analizarParametros(Arrays.copyOfRange(args, 2, args.length));
     }
 
-    private static String compruebaUrlWeb(String url) throws MalformedURLException {
+    private static String parseUrlWeb(String url) throws MalformedURLException {
         try {
             new URL(url);
         } catch (MalformedURLException ex) {
@@ -41,7 +44,7 @@ public class ParamsEjecucion {
         return url;
     }
 
-    private static String compruebaNombreWeb(String parametro) throws IllegalArgumentException {
+    private static String parseNombreWeb(String parametro) throws IllegalArgumentException {
         if (parametro.matches(".*[<>:\"/\\|?*].*")) {
             String msg = "El nombre de la web contiene caracteres especiales inválidos: <>:\"/\\|?*";
             System.out.println(msg);
@@ -83,6 +86,7 @@ public class ParamsEjecucion {
         else
             retardo = 0;
 
+
         debugMode = comando.hasOption("d");
 
     }
@@ -90,7 +94,7 @@ public class ParamsEjecucion {
     private static void parseAnalizadores(CommandLine comando) throws ParseException {
         tiposAnalizadores = comando.getOptionValues("a");
 
-        if (!analizadoresValidos(tiposAnalizadores)) {
+        if (!sonAnalizadoresValidos(tiposAnalizadores)) {
             System.out.println("Alguno/s de los analizadores introducidos no existe/n. Las opciones son: " + ConstructorAnalizador.getTiposValidos());
             throw new ParseException("Alguno/s de los analizadores introducidos no existe.");
         }
@@ -126,7 +130,7 @@ public class ParamsEjecucion {
         }
     }
 
-    private static boolean analizadoresValidos(String[] analizadores) {
+    private static boolean sonAnalizadoresValidos(String[] analizadores) {
         Set<String> tiposValidos = ConstructorAnalizador.getTiposValidos();
 
         for (String tipo : analizadores) {

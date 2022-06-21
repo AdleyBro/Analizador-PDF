@@ -31,10 +31,8 @@ public class Main {
     public static void main(String args[]) throws IOException {
 
         //Loading an existing document
-        File file = new File("D:\\1CarpetasVarias\\_Universidad_\\Trabajo\\Analizador PDF\\BOE.pdf");
-        //File file = new File("D:\\1CarpetasVarias\\Libros\\Informática\\Procesadores del Lenguaje\\Construccion de compiladores.pdf");
+        File file = new File("D:\\1CarpetasVarias\\Libros\\Informática\\Procesadores del Lenguaje\\Construccion de compiladores.pdf");
         //File file = new File("D:\\1CarpetasVarias\\Libros\\Informática\\Procesadores del Lenguaje\\Compiladores principios tecnicas y herramientas.pdf");
-        //File file = new File("D:\\1CarpetasVarias\\Libros\\Diseño Gráfico\\PixelLogic.pdf");
         PDDocument document = Loader.loadPDF(file);
         
         
@@ -192,7 +190,7 @@ public class Main {
     /**
      * Imprime información general de un documento dado: numero de paginas, @n titulo, autor, asunto,
      * palabras clave, creador, productor, fecha de creación, fecha de modificación, y un booleano
-     * indicando si el documento está reventado.
+     * indicando si el documento está "trapped".
      * @param document Documento a analizar
      */
     public static void printGeneralInfo(PDDocument document) {
@@ -215,7 +213,6 @@ public class Main {
         
         PDFTreeModel tree = new PDFTreeModel(document);
         PDStructureTreeRoot treeRoot = document.getDocumentCatalog().getStructureTreeRoot();
-        
         
         for (Object kid : treeRoot.getKids()) {
             if (kid instanceof PDStructureElement)

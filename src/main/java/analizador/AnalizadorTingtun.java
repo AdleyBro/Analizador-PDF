@@ -1,5 +1,7 @@
 package analizador;
 
+import basedatos.ConsultasBD;
+import basedatos.ConsultasBDTingtun;
 import logger.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -8,30 +10,29 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import parametros.ParamsEjecucion;
 
-import java.util.List;
-import java.util.logging.Logger;
+import java.sql.SQLException;
 
 public class AnalizadorTingtun implements Analizador {
     private static final String sitioWeb = "https://checkers.eiii.eu/en/pdfcheck/";
+    private ConsultasBDTingtun bd;
 
     @Override
     public void analizar(String pdfurl) {
-        String dirActual = System.getProperty("user.dir");
-        System.setProperty("webdriver.gecko.driver", dirActual + "/selenium/geckodriver.exe");
+        try {
+            bd = new ConsultasBDTingtun();
+            bd.insertPDF(pdfurl, ParamsEjecucion.fechaHoraInicio, ParamsEjecucion.getUrlWeb());
+        } catch (SQLException e) {
+            System.out.println("Ha ocurrido un error al intentar insertar en la base de datos el pdf " + pdfurl);
+            Log.error(e);
+            return;
+        }
 
-        FirefoxProfile profile = new FirefoxProfile();
-        profile.setPreference("dom.disable_beforeunload", true);
-        FirefoxOptions options = new FirefoxOptions().setHeadless(true).setProfile(profile);
+        WebDriver driver = inicializarWebDriver();
 
-
-        // TODO: consultar que preferencias/opciones son buenas para el rendimiento
-
-        WebDriver driver = new FirefoxDriver(options);
         driver.get("https://checkers.eiii.eu/en/pdfcheck/");
-
         driver.findElement(By.id("premission_question")).findElement(By.tagName("button")).click();
-
         driver.findElement(By.id("id_url")).click();
         driver.findElement(By.id("id_url")).sendKeys(pdfurl);
         driver.findElement(By.cssSelector(".align-items-end input")).click();
@@ -44,11 +45,18 @@ public class AnalizadorTingtun implements Analizador {
         System.out.println("Terminado: " + pdfurl);
     }
 
+    /**
+     * Extrae los resultados de las propiedades analizadas y los almacena en la base de datos.
+     * @param driver
+     * @param pdfurl
+     */
     private void extraeResultados(WebDriver driver, String pdfurl) {
         WebElement listaResultados = driver.findElement(By.id("rstTestlist"));
         for (WebElement webElemResultPropiedad : listaResultados.findElements(By.className("testtitle"))) {
 
             String nombrePropiedadTesteada = webElemResultPropiedad.getText().split("\n")[1];
+
+            //TODO: Insertar resultados de analisis al PDF asdogihsdoighpj
 
             try {
                 webElemResultPropiedad.findElement(By.cssSelector("span[title='Failed']"));
@@ -62,5 +70,17 @@ public class AnalizadorTingtun implements Analizador {
                 }
             }
         }
+    }
+
+    private WebDriver inicializarWebDriver() {
+        // TODO: consultar que preferencias/opciones son buenas para el rendimiento
+
+        String dirActual = System.getProperty("user.dir");
+        System.setProperty("webdriver.gecko.driver", dirActual + "/selenium/geckodriver.exe");
+
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("dom.disable_beforeunload", true);
+        FirefoxOptions options = new FirefoxOptions().setHeadless(true).setProfile(profile);
+        return new FirefoxDriver(options);
     }
 }
