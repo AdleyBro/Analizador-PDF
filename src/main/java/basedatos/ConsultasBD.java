@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -23,16 +25,10 @@ public class ConsultasBD {
     protected static String puerto;
 
     protected static final String tablaUrlRaiz = "url_raiz";
+    protected static final String tablaPDF = "pdf";
 
     public ConsultasBD() throws SQLException {
-        String peticionConexion = String.format("jdbc:postgresql://%s:%s/%s", ip, puerto, bd);
-        try {
-            conexion = DriverManager.getConnection(peticionConexion, usuario, contra);
-        } catch (SQLException ex) {
-            System.out.println("No se ha podido realizar la conexión a la base de datos. ¿Los datos de 'bd.properties' son correctos?");
-            Log.error(ex);
-            throw ex;
-        }
+        conectar();
     }
 
     /**
@@ -68,36 +64,56 @@ public class ConsultasBD {
     }
 
     /**
-     * Inserta la url raiz en la base de datos y devuelve un array con sus PK (timestamp actual y su url).
+     * Inserta la url raiz en la base de datos y devuelve el timestamp de su insercion.
      * @param url
-     * @return
+     * @return timestamp de insercion
      * @throws SQLException
      */
     public Timestamp insertUrlRaiz(String url) throws SQLException {
-        Timestamp timestamp = Timestamp.from(Instant.now());
-        String consulta = "INSERT INTO ? VALUES (?, ?)";
+        Timestamp timestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+        String consulta = String.format("INSERT INTO %s VALUES (?, ?)", tablaUrlRaiz);
         PreparedStatement sentencia = conexion.prepareStatement(consulta);
-        sentencia.setString(1, tablaUrlRaiz);
-        sentencia.setTimestamp(2, timestamp);
-        sentencia.setString(3, url);
-        ResultSet rs = sentencia.executeQuery();
-        Log.LOGGER.info("BD con: " + sentencia);
-        Log.LOGGER.info("BD res: " + rs);
+        sentencia.setTimestamp(1, timestamp);
+        sentencia.setString(2, url);
+        boolean res = sentencia.execute();
+        Log.LOGGER.info("BD consulta: " + sentencia);
+        Log.LOGGER.info("BD introducido?: " + res);
         return timestamp;
     }
 
-    public void insertPDF(String pdfurl, Timestamp fecha_hora, String url_raiz) throws SQLException {
-        String consulta = "INSERT INTO pdf VALUES (?, ?, ?)";
+    /**
+     *
+     * @param pdfurl
+     * @param fecha_hora
+     * @param url_raiz
+     * @return ID del PDF introducido en la base de datos
+     * @throws SQLException
+     */
+    public int insertPDF(String pdfurl, Timestamp fecha_hora, String url_raiz) throws SQLException {
+        String consulta = String.format("INSERT INTO %s(url, fecha_hora_url_raiz, url_url_raiz) VALUES (?, ?, ?);" +
+                                        "SELECT currval(pg_get_serial_sequence('pdf','id'))", tablaPDF);
         PreparedStatement sentencia = conexion.prepareStatement(consulta);
         sentencia.setString(1, pdfurl);
         sentencia.setTimestamp(2, fecha_hora);
         sentencia.setString(3, url_raiz);
         ResultSet rs = sentencia.executeQuery();
-        Log.LOGGER.info("BD con: " + sentencia);
-        Log.LOGGER.info("BD res: " + rs);
+        Log.LOGGER.info("BD consulta: " + sentencia);
+        Log.LOGGER.info("BD resuesta: " + rs);
+        return rs.getInt(1);
     }
 
     public void finalizar() throws SQLException {
         conexion.close();
+    }
+
+    private void conectar() throws SQLException {
+        String peticionConexion = String.format("jdbc:postgresql://%s:%s/%s", ip, puerto, bd);
+        try {
+            conexion = DriverManager.getConnection(peticionConexion, usuario, contra);
+        } catch (SQLException ex) {
+            System.out.println("No se ha podido realizar la conexión a la base de datos. ¿Los datos de 'bd.properties' son correctos?");
+            Log.error(ex);
+            throw ex;
+        }
     }
 }

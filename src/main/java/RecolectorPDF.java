@@ -5,14 +5,9 @@ import parametros.ParamsEjecucion;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class RecolectorPDF {
-    //private static final HashMap<Character, Analizador> tablaAnalizadores = new HashMap<>();
-    //private static Analizador analizador = null;
 
     private static EjecutorAnalisis ejecutorAnalisis;
 
@@ -36,18 +31,20 @@ public class RecolectorPDF {
 
     private static void recorrerYAnalizar(BufferedReader sitemap) throws InterruptedException, IOException {
 
-        ConsultasBD.inicializarPropiedades();
-
         Log.LOGGER.info("Comenzado los análisis de los pdf.");
+
         Stream<String> lineasSitemap = sitemap.lines();
         for (String linea : lineasSitemap.toList()) {
+
             String[] lineaConURL = linea.split("<loc>|</loc>");
+
             if (lineaConURL.length > 1 && lineaConURL[1].endsWith(".pdf"))
             {
                 String pdfurl = lineaConURL[1];
                 Log.LOGGER.info("Analizando " + pdfurl);
                 try {
                     ejecutorAnalisis.analizar(pdfurl);
+
                 } catch (IOException ex) {
                     System.out.println("Ha ocurrido un problema al intentar analizar los PDF.");
                     Log.error(ex);

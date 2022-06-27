@@ -21,8 +21,8 @@ public class AnalizadorTingtun implements Analizador {
     @Override
     public void analizar(String pdfurl) {
         try {
-            bd = new ConsultasBDTingtun();
-            bd.insertPDF(pdfurl, ParamsEjecucion.fechaHoraInicio, ParamsEjecucion.getUrlWeb());
+            bd = new ConsultasBDTingtun(pdfurl, ParamsEjecucion.fechaHoraInicio, ParamsEjecucion.getUrlWeb());
+
         } catch (SQLException e) {
             System.out.println("Ha ocurrido un error al intentar insertar en la base de datos el pdf " + pdfurl);
             Log.error(e);
@@ -56,18 +56,34 @@ public class AnalizadorTingtun implements Analizador {
 
             String nombrePropiedadTesteada = webElemResultPropiedad.getText().split("\n")[1];
 
-            //TODO: Insertar resultados de analisis al PDF asdogihsdoighpj
-
             try {
                 webElemResultPropiedad.findElement(By.cssSelector("span[title='Failed']"));
+                bd.insertResultado(nombrePropiedadTesteada, "SUSPENSO", bd.idPDF);
+
                 Log.LOGGER.info(nombrePropiedadTesteada + " - FAILED " + " - " + pdfurl);
             } catch (NoSuchElementException e1) {
                 try {
                     webElemResultPropiedad.findElement(By.cssSelector("span[title='Passed']"));
+                    bd.insertResultado(nombrePropiedadTesteada, "APROBADO", bd.idPDF);
+
                     Log.LOGGER.info(nombrePropiedadTesteada + " - PASSED " + " - " + pdfurl);
                 } catch (NoSuchElementException e2) {
-                    Log.LOGGER.info(nombrePropiedadTesteada + " - NECESITA VERIFICACION MANUAL " + " - " + pdfurl);
+                    try {
+
+                        bd.insertResultado(nombrePropiedadTesteada, "VERIF. MANUAL", bd.idPDF);
+                        Log.LOGGER.info(nombrePropiedadTesteada + " - NECESITA VERIFICACION MANUAL " + " - " + pdfurl);
+
+                    } catch (SQLException ex) {
+                        Log.LOGGER.warning("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
+                                "\nURL PDF: " + pdfurl + "; Propiedad: " + nombrePropiedadTesteada);
+                    }
+                } catch (SQLException ex) {
+                    Log.LOGGER.warning("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
+                            "\nURL PDF: " + pdfurl + "; Propiedad: " + nombrePropiedadTesteada);
                 }
+            } catch (SQLException ex) {
+                Log.LOGGER.warning("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
+                        "\nURL PDF: " + pdfurl + "; Propiedad: " + nombrePropiedadTesteada);
             }
         }
     }
