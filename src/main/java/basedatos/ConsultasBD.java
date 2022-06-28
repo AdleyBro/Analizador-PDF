@@ -90,20 +90,35 @@ public class ConsultasBD {
      * @throws SQLException
      */
     public int insertPDF(String pdfurl, Timestamp fecha_hora, String url_raiz) throws SQLException {
-        String consulta = String.format("INSERT INTO %s(url, fecha_hora_url_raiz, url_url_raiz) VALUES (?, ?, ?);" +
-                                        "SELECT currval(pg_get_serial_sequence('pdf','id'))", tablaPDF);
+        String consulta = String.format("INSERT INTO %s(url, fecha_hora_url_raiz, url_url_raiz) VALUES (?, ?, ?) RETURNING id", tablaPDF);
         PreparedStatement sentencia = conexion.prepareStatement(consulta);
         sentencia.setString(1, pdfurl);
         sentencia.setTimestamp(2, fecha_hora);
         sentencia.setString(3, url_raiz);
         ResultSet rs = sentencia.executeQuery();
         Log.LOGGER.info("BD consulta: " + sentencia);
-        Log.LOGGER.info("BD resuesta: " + rs);
-        return rs.getInt(1);
+        Log.LOGGER.info("BD respuesta: " + rs);
+
+        if (rs.next())
+            return rs.getInt(1);
+        else
+            return -1;
     }
 
     public void finalizar() throws SQLException {
         conexion.close();
+    }
+
+    public void setAutocommit(boolean modo) throws SQLException {
+        conexion.setAutoCommit(modo);
+    }
+
+    public void commit() throws SQLException {
+        conexion.commit();
+    }
+
+    public void rollback() throws SQLException {
+        conexion.rollback();
     }
 
     private void conectar() throws SQLException {

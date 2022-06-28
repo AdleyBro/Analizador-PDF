@@ -10,12 +10,12 @@ public class ConsultasBDTingtun extends ConsultasBD {
 
     private static final String tablaPropiedades = "props_tingtun";
     private static final String tablaResultados = "res_tingtun";
-    public final int idPDF;
+    public int idPDF;
 
 
-    public ConsultasBDTingtun(String pdfurl, Timestamp fecha_hora, String url_raiz) throws SQLException {
+    public ConsultasBDTingtun(boolean autoCommit) throws SQLException {
         super();
-        idPDF = insertPDF(pdfurl, fecha_hora, url_raiz);
+        setAutocommit(autoCommit);
     }
 
     public void insertResultado(String tituloPropiedad, String resultado, int idpdf) throws SQLException {
@@ -31,7 +31,7 @@ public class ConsultasBDTingtun extends ConsultasBD {
             Log.LOGGER.info("BD consulta: " + sentencia);
             Log.LOGGER.info("BD introducido?: " + res);
         } catch (SQLException ex) {
-            System.out.println("Ha ocurrido un error al intentar realizar consultas con la base de datos");
+            System.out.println("Ha ocurrido un error al intentar insertar un resultado de análisis en la base de datos. ID de PDF: " + idpdf);
             Log.error(ex);
             throw ex;
         }
