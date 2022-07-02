@@ -1,6 +1,7 @@
 package basedatos;
 
 import logger.Log;
+import org.postgresql.ds.PGSimpleDataSource;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -124,7 +125,13 @@ public class ConsultasBD {
     private void conectar() throws SQLException {
         String peticionConexion = String.format("jdbc:postgresql://%s:%s/%s", ip, puerto, bd);
         try {
-            conexion = DriverManager.getConnection(peticionConexion, usuario, contra);
+            PGSimpleDataSource ds = new PGSimpleDataSource();
+            ds.setServerNames(new String[]{ip});
+            ds.setDatabaseName(bd);
+            ds.setUser(usuario);
+            ds.setPassword(contra);
+            ds.setPortNumbers(new int[] {Integer.parseInt(puerto)});
+            conexion = ds.getConnection(usuario, contra);
         } catch (SQLException ex) {
             System.out.println("No se ha podido realizar la conexión a la base de datos. ¿Los datos de 'bd.properties' son correctos?");
             Log.error(ex);

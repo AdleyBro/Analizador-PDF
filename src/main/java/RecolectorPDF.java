@@ -31,6 +31,7 @@ public class RecolectorPDF {
 
     private static void recorrerYAnalizar(BufferedReader sitemap) throws InterruptedException, IOException {
 
+        System.out.println("Comenzado los análisis de los pdf.");
         Log.LOGGER.info("Comenzado los análisis de los pdf.");
 
         Stream<String> lineasSitemap = sitemap.lines();
@@ -41,7 +42,7 @@ public class RecolectorPDF {
             if (lineaConURL.length > 1 && lineaConURL[1].endsWith(".pdf"))
             {
                 String pdfurl = lineaConURL[1];
-                Log.LOGGER.info("Analizando " + pdfurl);
+
                 try {
                     ejecutorAnalisis.analizar(pdfurl);
 

@@ -79,7 +79,7 @@ public class ParamsEjecucion {
         if (comando.hasOption("n"))
             parseNumhilos(comando);
         else
-            numHilos = Runtime.getRuntime().availableProcessors();
+            numHilos = Runtime.getRuntime().availableProcessors() * 2;
 
         if (comando.hasOption("r"))
             parseRetardo(comando);
