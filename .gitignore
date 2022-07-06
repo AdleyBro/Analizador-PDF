@@ -1,4 +1,5 @@
 sitemap_*.xml
+tools/
 
 # User-specific stuff
 .idea/
