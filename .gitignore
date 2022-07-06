@@ -1,5 +1,7 @@
 sitemap_*.xml
 tools/
+sitemaps/
+logs/
 
 # User-specific stuff
 .idea/
