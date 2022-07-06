@@ -3,10 +3,7 @@ package basedatos;
 import logger.Log;
 import org.postgresql.ds.PGSimpleDataSource;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.*;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -28,8 +25,9 @@ public class ConsultasBD {
     protected static final String tablaUrlRaiz = "url_raiz";
     protected static final String tablaPDF = "pdf";
 
-    public ConsultasBD() throws SQLException {
+    public ConsultasBD(boolean autoCommit) throws SQLException {
         conectar();
+        setAutocommit(autoCommit);
     }
 
     /**
@@ -41,9 +39,9 @@ public class ConsultasBD {
 
         InputStream ficheroProps;
         try {
-            ficheroProps = new FileInputStream("./db.properties");
+            ficheroProps = new FileInputStream("bd.properties");
         } catch (FileNotFoundException ex) {
-            System.out.println("No se ha podido encontrar el fichero 'db.properties', necesario para la conexion con la base de datos.");
+            System.out.println("No se ha podido encontrar el fichero 'bd.properties', necesario para la conexion con la base de datos.");
             Log.error(ex);
             throw ex;
         }
@@ -52,7 +50,7 @@ public class ConsultasBD {
         try {
             propiedades.load(ficheroProps);
         } catch (IOException ex) {
-            System.out.println("Ha ocurrido un error al intentar leer el fichero 'db.properties'.");
+            System.out.println("Ha ocurrido un error al intentar leer el fichero 'bd.properties'.");
             Log.error(ex);
             throw ex;
         }
@@ -76,9 +74,8 @@ public class ConsultasBD {
         PreparedStatement sentencia = conexion.prepareStatement(consulta);
         sentencia.setTimestamp(1, timestamp);
         sentencia.setString(2, url);
-        boolean res = sentencia.execute();
-        Log.LOGGER.info("BD consulta: " + sentencia);
-        Log.LOGGER.info("BD introducido?: " + res);
+        sentencia.execute();
+        Log.LOGGER.info("Guardado web raiz: " + sentencia);
         return timestamp;
     }
 
@@ -91,14 +88,13 @@ public class ConsultasBD {
      * @throws SQLException
      */
     public int insertPDF(String pdfurl, Timestamp fecha_hora, String url_raiz) throws SQLException {
-        String consulta = String.format("INSERT INTO %s(url, fecha_hora_url_raiz, url_url_raiz) VALUES (?, ?, ?) RETURNING id", tablaPDF);
+        String consulta = String.format("INSERT INTO %s(url, fecha_hora_url_raiz, url_url_raiz) VALUES (?, ?, ?) RETURNING id;", tablaPDF);
         PreparedStatement sentencia = conexion.prepareStatement(consulta);
         sentencia.setString(1, pdfurl);
         sentencia.setTimestamp(2, fecha_hora);
         sentencia.setString(3, url_raiz);
         ResultSet rs = sentencia.executeQuery();
-        Log.LOGGER.info("BD consulta: " + sentencia);
-        Log.LOGGER.info("BD respuesta: " + rs);
+        Log.LOGGER.info("Guardado PDF: " + sentencia);
 
         if (rs.next())
             return rs.getInt(1);
@@ -107,6 +103,9 @@ public class ConsultasBD {
     }
 
     public void finalizar() throws SQLException {
+        if (!conexion.getAutoCommit())
+            conexion.commit();
+
         conexion.close();
     }
 
@@ -123,7 +122,7 @@ public class ConsultasBD {
     }
 
     private void conectar() throws SQLException {
-        String peticionConexion = String.format("jdbc:postgresql://%s:%s/%s", ip, puerto, bd);
+        //String peticionConexion = String.format("jdbc:postgresql://%s:%s/%s", ip, puerto, bd);
         try {
             PGSimpleDataSource ds = new PGSimpleDataSource();
             ds.setServerNames(new String[]{ip});
@@ -137,5 +136,11 @@ public class ConsultasBD {
             Log.error(ex);
             throw ex;
         }
+    }
+
+    public static boolean existeFicheroPropiedades() {
+        String ruta = "./bd.properties";
+        File fichero = new File(ruta);
+        return fichero.exists() && !fichero.isDirectory();
     }
 }

@@ -11,8 +11,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import parametros.ParamsEjecucion;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.time.Duration;
 
@@ -23,28 +23,46 @@ public class AnalizadorTingtun implements Analizador {
     private final String mensajeFinAnalisis = "Análisis completado. ID de PDF: %d";
 
     @Override
-    public void analizar(String pdfurl) {
+    public void analizar(String pdfurl, int pdfId) {
 
-        Log.LOGGER.info("Analizando " + pdfurl);
+        String msg1 = "Analizando PDF " + pdfId + ": " + pdfurl;
+        System.out.println(msg1);
+        Log.LOGGER.info(msg1);
 
-        insertarPDFenBD(pdfurl);
+        try {
+            bd = new ConsultasBDTingtun(false);
+        } catch (SQLException ex) {
+            System.out.println("Ha ocurrido un error al intentar conectar con la base de datos.");
+            Log.error(ex);
+            return;
+        }
 
-        WebDriver driver = inicializarWebDriver();
+        WebDriver driver = iniWebDriver();
 
-        encontrarListaResultados(driver, pdfurl);
+        try {
+            encontrarListaResultados(driver, pdfurl);
+        } catch (NoSuchElementException ex) {
+            System.out.println("Ha ocurrido un error al intentar navegar por Tingtun");
+            Log.error(ex);
+            return;
+        }
 
-        extraerResultados(driver);
+        try {
+            guardarResultados(driver, pdfId);
+        } catch (SQLException ex) { return; }
 
-        finalizarConexionBD();
+        finalizarConexionBD(pdfId);
+
+        String msg2 = "Terminado: PDF " + pdfId + ": " + pdfurl;
+        System.out.println(msg2);
+        Log.LOGGER.info(msg2);
 
         driver.quit();
     }
 
     private void encontrarListaResultados(WebDriver driver, String pdfurl) {
         driver.get(urlAnalizadorWeb);
-        try {
-            driver.findElement(By.id("premission_question")).findElement(By.tagName("button")).click();
-        } catch (NoSuchElementException ex) { }
+        driver.findElement(By.id("premission_question")).findElement(By.tagName("button")).click();
         driver.findElement(By.id("id_url")).click();
         driver.findElement(By.id("id_url")).sendKeys(pdfurl);
         driver.findElement(By.cssSelector(".align-items-end input")).click();
@@ -55,7 +73,7 @@ public class AnalizadorTingtun implements Analizador {
      * @param driver
      *
      */
-    private void extraerResultados(WebDriver driver) {
+    private void guardarResultados(WebDriver driver, int pdfId) throws SQLException {
         //System.out.println("Extrayendo resultados para PDF con ID: " + bd.idPDF);
 
         WebElement listaResultados;
@@ -73,62 +91,62 @@ public class AnalizadorTingtun implements Analizador {
             String nombrePropiedadTesteada = webElemResultPropiedad.getText().split("\n")[1];
             try {
                 webElemResultPropiedad.findElement(By.cssSelector("span[title='Failed']"));
-                bd.insertResultado(nombrePropiedadTesteada, "SUSPENSO", bd.idPDF);
+                bd.insertResultado(nombrePropiedadTesteada, "SUSPENSO", pdfId);
 
             } catch (NoSuchElementException e1) {
                 try {
                     webElemResultPropiedad.findElement(By.cssSelector("span[title='Passed']"));
-                    bd.insertResultado(nombrePropiedadTesteada, "APROBADO", bd.idPDF);
+                    bd.insertResultado(nombrePropiedadTesteada, "APROBADO", pdfId);
 
                 } catch (NoSuchElementException e2) {
                     try {
 
-                        bd.insertResultado(nombrePropiedadTesteada, "VERIF. MANUAL", bd.idPDF);
+                        bd.insertResultado(nombrePropiedadTesteada, "VERIF. MANUAL", pdfId);
 
                     } catch (SQLException ex) {
                         System.out.println("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
-                                "\nID de PDF: " + bd.idPDF + "; Propiedad: " + nombrePropiedadTesteada);
+                                "\nID de PDF: " + pdfId + "; Propiedad: " + nombrePropiedadTesteada);
                         Log.LOGGER.warning("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
-                                "\nID de PDF: " + bd.idPDF + "; Propiedad: " + nombrePropiedadTesteada);
+                                "\nID de PDF: " + pdfId + "; Propiedad: " + nombrePropiedadTesteada);
+                        throw ex;
                     }
                 } catch (SQLException ex) {
                     System.out.println("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
-                            "\nID de PDF: " + bd.idPDF + "; Propiedad: " + nombrePropiedadTesteada);
+                            "\nID de PDF: " + pdfId + "; Propiedad: " + nombrePropiedadTesteada);
                     Log.LOGGER.warning("Ha ocurrido un error al intentar insertar en la BD un resultado: +" +
-                            "\nID de PDF: " + bd.idPDF + "; Propiedad: " + nombrePropiedadTesteada);
+                            "\nID de PDF: " + pdfId + "; Propiedad: " + nombrePropiedadTesteada);
+                    throw ex;
                 }
             } catch (SQLException ex) {
                 System.out.println("Ha ocurrido un error al intentar insertar en la BD un resultado." +
-                        "\nID de PDF: " + bd.idPDF + "; Propiedad: " + nombrePropiedadTesteada + "\n");
+                        "\nID de PDF: " + pdfId + "; Propiedad: " + nombrePropiedadTesteada + "\n");
                 Log.LOGGER.warning("Ha ocurrido un error al intentar insertar en la BD un resultado." +
-                        "\nID de PDF: " + bd.idPDF + "; Propiedad: " + nombrePropiedadTesteada + "\n");
+                        "\nID de PDF: " + pdfId + "; Propiedad: " + nombrePropiedadTesteada + "\n");
+                throw ex;
             }
         }
     }
 
-    private void finalizarConexionBD() {
+    private void finalizarConexionBD(int pdfId) {
         try {
             bd.commit();
-            Log.LOGGER.info(mensajeFinAnalisis.formatted(bd.idPDF));
-            System.out.println(mensajeFinAnalisis.formatted(bd.idPDF));
         } catch (SQLException e1) {
             try {
                 bd.rollback();
             } catch (SQLException e2) {
-                System.out.println("No se ha conseguido realizar el rollback de las transacciones. ID de PDF: " + bd.idPDF);
+                System.out.println("No se ha conseguido realizar el rollback de las transacciones. ID de PDF: " + pdfId);
                 Log.error(e2);
             }
         }
     }
 
-    private WebDriver inicializarWebDriver() {
+    private WebDriver iniWebDriver() {
         // TODO: consultar que preferencias/opciones son buenas para el rendimiento
-        System.setProperty("webdriver.gecko.driver","src/main/resources/drivers/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver","tools/drivers/geckodriver.exe");
         //System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
 
         //String dirActual = System.getProperty("user.dir");
-        System.setProperty("webdriver.gecko.driver", "src/main/resources/drivers/geckodriver.exe");
 
         FirefoxProfile profile = new FirefoxProfile();
 
@@ -137,22 +155,9 @@ public class AnalizadorTingtun implements Analizador {
         return new FirefoxDriver(options);
     }
 
-    private void insertarPDFenBD(String pdfurl) {
-        try {
-            bd = new ConsultasBDTingtun(false);
-
-            bd.idPDF = bd.insertPDF(pdfurl, ParamsEjecucion.fechaHoraInicio, ParamsEjecucion.getUrlWeb());
-
-        } catch (SQLException e) {
-            System.out.println("Ha ocurrido un error al intentar insertar en la base de datos el pdf " + pdfurl);
-            Log.error(e);
-            try {
-                bd.rollback();
-            } catch (SQLException ex) {
-                System.out.println("No se ha conseguido realizar el rollback de las transacciones. ID de PDF: " + bd.idPDF);
-                Log.error(ex);
-            }
-            return;
-        }
+    public static boolean existeDriverWeb() {
+        String rutaDriver = "./tools/drivers/geckodriver.exe";
+        File fichero = new File(rutaDriver);
+        return fichero.exists() && !fichero.isDirectory();
     }
 }

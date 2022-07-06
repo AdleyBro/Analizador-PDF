@@ -18,9 +18,7 @@ public class ParamsEjecucion {
     private static int retardo;
     private static boolean debugMode;
 
-    public static Timestamp fechaHoraInicio;
-
-    private static final Options options = new Options();
+    private static final Options options = inicializarOptions();
     private static final CommandLineParser parser = new DefaultParser();
 
     public static void getParametrosEjecucion(String[] args) throws MalformedURLException, ParseException, IllegalArgumentException {
@@ -54,6 +52,19 @@ public class ParamsEjecucion {
         return parametro.toLowerCase(Locale.ROOT);
     }
 
+    private static Options inicializarOptions() {
+        Options options = new Options();
+        Option opcionAnalizadores = new Option("a", "analizadores", true,
+                "Tipos de analizadores que se querran utilizar.\nValor predeterminado = "
+                        + ConstructorAnalizador.getAnalizadorPredet() + "\nValores posibles = " + ConstructorAnalizador.getTiposValidos());
+        opcionAnalizadores.setArgs(Option.UNLIMITED_VALUES);
+        options.addOption(opcionAnalizadores);
+        options.addOption("n", "numhilos", true, "Numero de hilos.\nValor predeterminado = numero de nucleos de la maquina");
+        options.addOption("r", "retardo", true, "Retardo en milisegundos entre cada analisis.\nValor predeterminado = 0");
+        options.addOption("d", false, "Modo depuracion.\nValor predeterminado = false");
+        return options;
+    }
+
     /**
      * Analiza el resto de los argumentos de entrada (saltándose los dos primeros, correspondientes a las url y nombre web),
      * para obtener los parámetros introducidos con la forma "-x val1 val2 ...", donde "x" indica el tipo de parámetro
@@ -62,13 +73,6 @@ public class ParamsEjecucion {
      * @throws ParseException Se lanza cuando algún parámetro es inexistente o tiene valores inválidos.
      */
     private static void analizarParametros(String[] args) throws ParseException {
-
-        Option opcionAnalizadores = new Option("a", "analizadores", true, "Tipos de analizadores que se querrán utilizar. Valor predeterminado = " + ConstructorAnalizador.getAnalizadorPredet());
-        opcionAnalizadores.setArgs(Option.UNLIMITED_VALUES);
-        options.addOption(opcionAnalizadores);
-        options.addOption("n", "numhilos", true, "Número de hilos. Valor predeterminado = nº de núcleos de la máquina");
-        options.addOption("r", "retardo", true, "Retardo en milisegundos entre cada análisis. Valor predeterminado = 0");
-        options.addOption("d", false, "Modo depuración. Valor predeterminado = false");
 
         CommandLine comando = parser.parse(options, args);
         if (comando.hasOption("a"))
@@ -86,16 +90,14 @@ public class ParamsEjecucion {
         else
             retardo = 0;
 
-
         debugMode = comando.hasOption("d");
-
     }
 
     private static void parseAnalizadores(CommandLine comando) throws ParseException {
         tiposAnalizadores = comando.getOptionValues("a");
 
         if (!sonAnalizadoresValidos(tiposAnalizadores)) {
-            System.out.println("Alguno/s de los analizadores introducidos no existe/n. Las opciones son: " + ConstructorAnalizador.getTiposValidos());
+            System.out.println("Alguno/s de los analizadores indicados " + Arrays.stream(tiposAnalizadores).toList() + " no existe/n. Los analizadores disponiblesson: " + ConstructorAnalizador.getTiposValidos());
             throw new ParseException("Alguno/s de los analizadores introducidos no existe.");
         }
     }
@@ -138,6 +140,16 @@ public class ParamsEjecucion {
                 return false;
         }
         return true;
+    }
+
+    public static void imprimeAyuda() {
+        System.out.println("Siempre se debe ejecutar con, al menos, estos dos argumentos de entrada:");
+        System.out.println("  1. URL de página web. Ej: https://www.uah.es");
+        System.out.println("  2. Nombre del fichero sitemap. Ej: uah");
+        System.out.println("\nEjemplo de ejecución, usando tres hilos: 'java -jar AnalizadorPDFs.jar https://www.uah.es uah -n 3'");
+        System.out.println("\nAdemás, existen los siguientes argumentos opcionales:");
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("Analizador PDF", options);
     }
 
     public static String getUrlWeb() { return urlWeb; }

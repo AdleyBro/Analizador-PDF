@@ -1,6 +1,9 @@
 package logger;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.*;
@@ -17,8 +20,17 @@ public class Log {
         if (handlers[0] instanceof ConsoleHandler)
             rootLogger.removeHandler(handlers[0]);
 
-        FileHandler ficheroLog = new FileHandler("ultimo_log.log");
-        ConsoleHandler consoleHandler = new ConsoleHandler();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH.mm.ss");
+        Date date = new Date(System.currentTimeMillis());
+        String tituloLog = "analisis_" + dateFormatter.format(date) + ".log";
+
+        // Se crea la carpeta logs, en caso de que no exista.
+        Path dir = Paths.get("logs/");
+        if (!Files.exists(dir))
+            Files.createDirectory(dir);
+
+        FileHandler ficheroLog = new FileHandler(dir + "/" + tituloLog);
+        //ConsoleHandler consoleHandler = new ConsoleHandler();
 
         CustomFormatter formatter = new CustomFormatter();
         ficheroLog.setFormatter(formatter);

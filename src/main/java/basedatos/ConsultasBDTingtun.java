@@ -10,12 +10,10 @@ public class ConsultasBDTingtun extends ConsultasBD {
 
     private static final String tablaPropiedades = "props_tingtun";
     private static final String tablaResultados = "res_tingtun";
-    public int idPDF;
 
 
     public ConsultasBDTingtun(boolean autoCommit) throws SQLException {
-        super();
-        setAutocommit(autoCommit);
+        super(autoCommit);
     }
 
     public void insertResultado(String tituloPropiedad, String resultado, int idpdf) throws SQLException {
@@ -27,7 +25,7 @@ public class ConsultasBDTingtun extends ConsultasBD {
             sentencia.setString(1, resultado);
             sentencia.setInt(2, idpdf);
             sentencia.setInt(3, idPropiedad);
-            boolean res = sentencia.execute();
+            sentencia.execute();
 
             Log.LOGGER.info("PDF " + idpdf + " " + resultado + " - Propiedad " + idPropiedad);
         } catch (SQLException ex) {
