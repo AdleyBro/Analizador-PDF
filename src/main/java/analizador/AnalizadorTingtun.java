@@ -18,9 +18,19 @@ import java.time.Duration;
 
 public class AnalizadorTingtun implements Analizador {
     private static final String urlAnalizadorWeb = "https://checkers.eiii.eu/en/pdfcheck/";
+    private static final String rutaGeckoDriver = getRutaGeckoDriver();
     private ConsultasBDTingtun bd;
 
     private final String mensajeFinAnalisis = "Análisis completado. ID de PDF: %d";
+
+    private static String getRutaGeckoDriver() {
+        String ruta = "./tools/drivers/";
+        if (System.getProperty("os.name").toLowerCase().contains("windows"))
+            ruta += "geckodriver.exe";
+        else
+            ruta += "geckodriver";
+        return ruta;
+    }
 
     @Override
     public void analizar(String pdfurl, int pdfId) {
@@ -37,7 +47,14 @@ public class AnalizadorTingtun implements Analizador {
             return;
         }
 
-        WebDriver driver = iniWebDriver();
+        WebDriver driver;
+        try {
+            driver = iniWebDriver();
+        } catch (Exception ex) {
+            System.out.println("Ha ocurrido un error al inicializar el driver web de selenium.");
+            Log.error(ex);
+            return;
+        }
 
         try {
             encontrarListaResultados(driver, pdfurl);
@@ -140,9 +157,9 @@ public class AnalizadorTingtun implements Analizador {
         }
     }
 
-    private WebDriver iniWebDriver() {
+    private WebDriver iniWebDriver() throws Exception {
         // TODO: consultar que preferencias/opciones son buenas para el rendimiento
-        System.setProperty("webdriver.gecko.driver","tools/drivers/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", rutaGeckoDriver);
         //System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
         System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
 
@@ -156,8 +173,7 @@ public class AnalizadorTingtun implements Analizador {
     }
 
     public static boolean existeDriverWeb() {
-        String rutaDriver = "./tools/drivers/geckodriver.exe";
-        File fichero = new File(rutaDriver);
+        File fichero = new File(rutaGeckoDriver);
         return fichero.exists() && !fichero.isDirectory();
     }
 }
